@@ -15,7 +15,7 @@ export default function Index() {
         setTimeout(() => {
           setIsReady(true);
           SplashScreen.hideAsync();
-          router.replace("./screens/dashboard");
+          router.replace("./Loginauth/Login");
         }, 2000);
       } catch (e) {
         console.warn(e);
@@ -29,8 +29,8 @@ export default function Index() {
       <View className="flex-1 items-center justify-center bg-[#0E1D12]">
         <Image 
           source={require("../assets/logo.png")} 
-          className="w-35 h-35" // Make it smaller
-          resizeMode="contain" // Ensures it scales properly
+          className="w-60 h-60" // ✅ Tailwind className now works!
+          resizeMode="contain"
         />
       </View> 
     );

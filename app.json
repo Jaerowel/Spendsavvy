@@ -27,7 +27,9 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/logo.png"
+          "image": "./assets/logo.png",
+          "resizeMode": "contain",
+          "image2": "./assets/Logo(2).png"
           
         }
       ]
