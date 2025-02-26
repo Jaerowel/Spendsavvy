@@ -32,7 +32,7 @@ export default function Index() {
           className="w-35 h-35" // Make it smaller
           resizeMode="contain" // Ensures it scales properly
         />
-      </View>
+      </View> 
     );
   }
 
