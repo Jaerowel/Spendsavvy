@@ -12,7 +12,7 @@ export default function LoginComponent() {
   const router = useRouter();
 
   return (
-    <View className="bg-[#F9F2EF] p-6 rounded-t-3xl w-full flex-grow">
+    <View className="bg-[#F9F2EF] p-6 rounded-3xl w-full flex-grow ">
       {/* Toggle between Login & Register */}
       <ToggleTab activeTab={activeTab} setActiveTab={setActiveTab} />
 

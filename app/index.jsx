@@ -3,6 +3,7 @@ import { View, Image } from "react-native";
 import { useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 
+
 export default function Index() {
   const [isReady, setIsReady] = useState(false);
   const router = useRouter();
@@ -10,13 +11,13 @@ export default function Index() {
   useEffect(() => {
     async function prepare() {
       try {
-        await SplashScreen.preventAutoHideAsync();
+        await SplashScreen.preventAutoHideAsync(); // Prevent splash screen from hiding immediately
 
         setTimeout(() => {
-          setIsReady(true);
-          SplashScreen.hideAsync();
-          router.replace("./Loginauth/Login");
-        }, 2000);
+          setIsReady(true); // Set the app as ready
+          SplashScreen.hideAsync(); // Hide splash screen
+          router.replace("./Loginauth/Login"); // Redirect to the login page
+        }, 2000); // Show splash screen for 2 seconds
       } catch (e) {
         console.warn(e);
       }
@@ -36,5 +37,6 @@ export default function Index() {
     );
   }
 
+  // After splash screen, you can return a placeholder or routing logic here
   return null;
 }

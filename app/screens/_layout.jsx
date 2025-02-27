@@ -1,13 +1,13 @@
 import { Tabs } from "expo-router";
 import { View, TouchableOpacity } from "react-native";
 import { Home, Wallet, User, Cpu, HandCoins } from "lucide-react-native";
-import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+
 
 export default function TabLayout() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#1d1f24" }}>
-      <StatusBar style="light" backgroundColor="#1d1f24" />
+    <SafeAreaView className="flex-1 bg-[#1d1f24]">
       <Tabs
         screenOptions={{
           tabBarStyle: {
@@ -35,7 +35,7 @@ export default function TabLayout() {
           name="dashboard"
           options={{
             tabBarIcon: ({ color }) => (
-              <Home size={25} color={color} style={{ alignSelf: "center" }} />
+              <Home size={25} color={color} className="self-center" />
             ),
           }}
         />
@@ -45,7 +45,7 @@ export default function TabLayout() {
           name="transaction"
           options={{
             tabBarIcon: ({ color }) => (
-              <Wallet size={25} color={color} style={{ alignSelf: "center" }} />
+              <Wallet size={25} color={color} className="self-center" />
             ),
           }}
         />
@@ -58,17 +58,18 @@ export default function TabLayout() {
               <TouchableOpacity
                 {...props}
                 style={{
-                  top: -20, // Adjusted position
+                  top: -30, // Adjusted position
                   justifyContent: "center",
                   alignItems: "center",
                   backgroundColor: "#7BE495",
                   width: 64,
+                  left:10,
                   height: 64,
                   borderRadius: 32,
                   shadowColor: "#000",
                   shadowOffset: { width: 0, height: 4 },
                   shadowOpacity: 0.3,
-                  shadowRadius: 4,
+                  shadowRadius: 2,
                 }}
               >
                 <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -78,13 +79,12 @@ export default function TabLayout() {
             ),
           }}
         />
-
         {/* Debt Tab */}
         <Tabs.Screen
           name="debt"
           options={{
             tabBarIcon: ({ color }) => (
-              <HandCoins size={25} color={color} style={{ alignSelf: "center" }} />
+              <HandCoins size={25} color={color} className="self-center" />
             ),
           }}
         />
@@ -94,7 +94,7 @@ export default function TabLayout() {
           name="profile"
           options={{
             tabBarIcon: ({ color }) => (
-              <User size={25} color={color} style={{ alignSelf: "center" }} />
+              <User size={25} color={color} className="self-center" />
             ),
           }}
         />
