@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "";
+const API_KEY = "hi";
 
 export const getChatbotResponse = async (message) => {
   try {
