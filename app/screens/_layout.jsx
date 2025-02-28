@@ -42,7 +42,7 @@ export default function TabLayout() {
 
         {/* Wallet Tab */}
         <Tabs.Screen
-          name="transaction"
+          name="tracking"
           options={{
             tabBarIcon: ({ color }) => (
               <Wallet size={25} color={color} className="self-center" />
@@ -52,7 +52,7 @@ export default function TabLayout() {
 
         {/* Tracking Tab with Floating Button */}
         <Tabs.Screen
-          name="Tracking"
+          name="chatbot"
           options={{
             tabBarButton: (props) => (
               <TouchableOpacity

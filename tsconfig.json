@@ -1,9 +1,14 @@
 {
-  "compilerOptions": {},
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false
+  },
   "extends": "expo/tsconfig.base",
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
