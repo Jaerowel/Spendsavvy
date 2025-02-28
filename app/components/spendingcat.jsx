@@ -1,28 +1,35 @@
-import { View } from "react-native";
-import { useRouter } from "expo-router";
-import Header from "../components/header";
-import PieChart from "../components/chart"; // Ensure correct casing
-import SpendingCategoriesCard from "../components/SpendingCat"; // Ensure correct casing
+import React from "react";
+import { View, Text, Image } from "react-native";
 
-export default function TrackingScreen() { // Function name capitalized
-  const router = useRouter();
+const categories = [
+  { amount: "800PHP", percentage: "37%", label: "Utilities" },
+  { amount: "4000PHP", percentage: "45%", label: "Payments" },
+  { amount: "200PHP", percentage: "29%", label: "Subscription" },
+  { amount: "500PHP", percentage: "41%", label: "Expenses" },
+];
 
+const SpendingCategoriesCard = () => {
   return (
-    <View className="flex-1 bg-[#0E1D12]">
-      <Header />
-      <View className="items-center mt-8">
-        <PieChart
-          data={[
-            { percentage: 41, color: "#7BE495", angle: -45, position: { top: 15, right: 40 } },
-            { percentage: 45, color: "#6ADF93", angle: 30, position: { bottom: 30, right: 20 } },
-            { percentage: 37, color: "#55D881", angle: 120, position: { bottom: 10, left: 40 } },
-            { percentage: 29, color: "#36C167", angle: 200, position: { top: 30, left: 20 } },
-          ]}
+    <View className="bg-[#2D2D2D] rounded-3xl p-6 mt-10  flex-grow w-full">
+      <Text className="text-white text-lg font-bold mb-4">Spending categories</Text>
+      <View className="flex-row flex-wrap justify-between">
+        {categories.map((item, index) => (
+          <View
+            key={index}
+            className="bg-[#3A3A3A] rounded-3xl p-4 w-[47%] mb-3"
+          >
+            <Text className="text-white font-bold">{item.amount}</Text>
+            <Text className="text-white text-right">{item.percentage}</Text>
+            <Text className="text-gray-400 text-sm mt-1">{item.label}</Text>
+            <Image
+          source={{ uri: "https://via.placeholder.com/40" }} // Replace with real icon
+          className="w-10 h-10 rounded-full mr-3"
         />
-      </View>
-      <View className="flex-1 items-center mt-10">
-        <SpendingCategoriesCard />
+          </View>
+        ))}
       </View>
     </View>
   );
-}
+};
+
+export default SpendingCategoriesCard;
