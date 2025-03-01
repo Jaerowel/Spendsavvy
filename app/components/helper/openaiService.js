@@ -1,14 +1,16 @@
 import axios from "axios";
 
-const API_KEY = "hi";
+const API_KEY = api.env.EXPO_PUBLIC_COHERE_API_KEY; // Replace with your actual API key
 
 export const getChatbotResponse = async (message) => {
   try {
     const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
+      "https://api.cohere.com/v1/chat",
       {
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: message }],
+        model: "command-r", // You can use "command-r" or "command-r-plus" (for better results)
+        message: message, // User input
+        chat_history: [], // Optional: Add chat history for context
+        temperature: 0.7, // Adjust response randomness
       },
       {
         headers: {
@@ -18,7 +20,7 @@ export const getChatbotResponse = async (message) => {
       }
     );
 
-    return response.data.choices[0].message.content;
+    return response.data.text; // Return the response text
   } catch (error) {
     console.error("Error fetching chatbot response:", error.response?.data || error.message);
     return "Sorry, I couldn't process that request.";
