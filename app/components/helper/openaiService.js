@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_KEY = api.env.EXPO_PUBLIC_COHERE_API_KEY; // Replace with your actual API key
+const API_KEY = process.env.EXPO_PUBLIC_COHERE_API_KEY;
+
 
 export const getChatbotResponse = async (message) => {
   try {

@@ -1,15 +1,19 @@
 {
   "expo": {
-    "name": "wallet",
-    "slug": "wallet",
+    "name": "SpendSavvy",
+    "slug": "SpendSavvy",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/lgogo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jaero.SpendSavvy",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -28,14 +32,21 @@
         "expo-splash-screen",
         {
           "image": "./assets/logo.png",
-          "resizeMode": "contain",
-          "image2": "./assets/Logo(2).png"
-          
+          "resizeMode": "contain"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "EXPO_PUBLIC_COHERE_API_KEY": "@env:EXPO_PUBLIC_COHERE_API_KEY",
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4742872c-7a7c-4db5-9a47-c5da8b8c3f3f"
+      }
     }
   }
 }
