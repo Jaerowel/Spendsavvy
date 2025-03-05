@@ -1,13 +1,14 @@
 import { View, Text, Button } from "react-native";
+import TransactionList from "../components/transaction";
 import { useRouter } from "expo-router";
 
 export default function DebtScreen() {
   const router = useRouter();
 
   return (
-    <View className="flex-1 items-center justify-center bg-[#0E1D12]">
-      <Text className="text-white text-lg font-bold">Debt Screen</Text>
-      <Button title="Back to Home" onPress={() => router.push("/")} />
+    <View className="flex-1 p-4 bg-[#0E1D12]">
+     <TransactionList/>
+     
     </View>
   );
 }
