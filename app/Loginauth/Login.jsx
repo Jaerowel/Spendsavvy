@@ -4,22 +4,20 @@ import LoginComponent from "./logincard";
 
 export default function LoginScreen() {
   return (
-    <View className="flex-1 bg-[#0f1d14] justify-center ">
+    <View className="flex-1 justify-center bg-[#0f1d14]">
       {/* Logo - Centered */}
-      <View className="items-center mb-5 mt-10">
-      
-          <DummyImage name="logo2" style={{ width: 190, height: 190 }} /> 
-        
+      <View className="mb-5 mt-10 items-center">
+        <DummyImage name="logo2" style={{ width: 190, height: 190 }} />
       </View>
 
       {/* Text - Left-Aligned */}
-      <View className="items-start ml-7">
-        <Text className="text-[#7BE495] text-4xl font-bold mb-4">
+      <View className="ml-7 items-start">
+        <Text className="mb-4 text-4xl font-bold text-[#7BE495]">
           Go ahead and{"\n"}setup your account
         </Text>
-        <Text className="text-gray-400 mb-5">
+        <Text className="mb-5 text-gray-400">
           Sign up to enjoy maximum experience
-        </Text>
+        </Text> 
       </View>
 
       {/* Login Card */}
