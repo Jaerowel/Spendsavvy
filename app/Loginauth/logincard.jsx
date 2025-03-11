@@ -44,9 +44,8 @@ export default function LoginComponent() {
   };
 
   return (
-    <View className="bg-[#F9F2EF] p-6 rounded-3xl w-full flex-grow ">
-      {/* Toggle between Login & Register */}
-      <ToggleTab activeTab={activeTab} setActiveTab={setActiveTab} />
+    <View className="p-2 rounded-3xl w-full flex-grow ">
+
 
       {/* Email Input */}
       <InputField
