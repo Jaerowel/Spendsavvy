@@ -18,6 +18,7 @@ const ToggleTab = ({ activeTab, setActiveTab }) => {
           Login
         </Text>
       </TouchableOpacity>
+
       <TouchableOpacity
         onPress={() => setActiveTab("register")}
         className={`flex-1 items-center p-4 rounded-full ${
