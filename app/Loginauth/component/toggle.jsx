@@ -3,10 +3,10 @@ import { TouchableOpacity, Text, View } from "react-native";
 
 const ToggleTab = ({ activeTab, setActiveTab }) => {
   return (
-    <View className="flex-row justify-between bg-gray-300 rounded-full p-3 mb-6">
+    <View className="mb-6 flex-row justify-between rounded-full bg-gray-300 p-3">
       <TouchableOpacity
         onPress={() => setActiveTab("login")}
-        className={`flex-1 items-center p-4 rounded-full ${
+        className={`flex-1 items-center rounded-full p-4 ${
           activeTab === "login" ? "bg-white" : ""
         }`}
       >
@@ -21,7 +21,7 @@ const ToggleTab = ({ activeTab, setActiveTab }) => {
 
       <TouchableOpacity
         onPress={() => setActiveTab("register")}
-        className={`flex-1 items-center p-4 rounded-full ${
+        className={`flex-1 items-center rounded-full p-4 ${
           activeTab === "register" ? "bg-white" : ""
         }`}
       >

@@ -7,7 +7,7 @@ const PieChart = ({ data = [], size = 200, strokeWidth = 14 }) => {
   const circumference = 2 * Math.PI * radius;
 
   return (
-    <View className="items-center justify-center relative">
+    <View className="relative items-center justify-center">
       <Svg width={size} height={size}>
         {/* Background Circle */}
         <Circle
@@ -33,7 +33,7 @@ const PieChart = ({ data = [], size = 200, strokeWidth = 14 }) => {
               strokeDasharray={circumference}
               strokeDashoffset={(1 - seg.percentage / 100) * circumference}
               strokeLinecap="round"
-              transform={[{ rotate: `${seg.angle}deg` }]} // ✅ Fixes rotation
+              transform={[{ rotate: `${seg.angle}deg` }]}
               originX={size / 2}
               originY={size / 2}
             />
@@ -42,16 +42,19 @@ const PieChart = ({ data = [], size = 200, strokeWidth = 14 }) => {
 
       {/* Center Text */}
       <View className="absolute items-center">
-        <Text className="text-white text-3xl font-bold">
+        <Text className="text-3xl font-bold text-white">
           {data.reduce((sum, seg) => sum + seg.percentage, 0)}%
         </Text>
-        <Text className="text-gray-400 text-sm">Transaction</Text>
+        <Text className="text-sm text-gray-400">Transaction</Text>
       </View>
 
       {/* Percentage Labels */}
       {data.map((seg, index) => (
-        <View key={`label-${index}`} style={{ position: "absolute", ...seg.position }}>
-          <Text className="bg-gray-700 text-white px-2 py-1 rounded-lg">
+        <View
+          key={`label-${index}`}
+          style={{ position: "absolute", ...seg.position }}
+        >
+          <Text className="rounded-lg bg-gray-700 px-2 py-1 text-white">
             {seg.percentage}%
           </Text>
         </View>

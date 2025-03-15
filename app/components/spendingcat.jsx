@@ -10,21 +10,23 @@ const categories = [
 
 const SpendingCategoriesCard = () => {
   return (
-    <View className="bg-[#2D2D2D] rounded-3xl p-6 mt-10  flex-grow w-full">
-      <Text className="text-white text-lg font-bold mb-4">Spending categories</Text>
+    <View className="mt-10 w-full flex-grow rounded-3xl bg-[#2D2D2D] p-6">
+      <Text className="mb-4 text-lg font-bold text-white">
+        Spending categories
+      </Text>
       <View className="flex-row flex-wrap justify-between">
         {categories.map((item, index) => (
           <View
             key={index}
-            className="bg-[#3A3A3A] rounded-3xl p-4 w-[47%] mb-3"
+            className="mb-3 w-[47%] rounded-3xl bg-[#3A3A3A] p-4"
           >
-            <Text className="text-white font-bold">{item.amount}</Text>
-            <Text className="text-white text-right">{item.percentage}</Text>
-            <Text className="text-gray-400 text-sm mt-1">{item.label}</Text>
+            <Text className="font-bold text-white">{item.amount}</Text>
+            <Text className="text-right text-white">{item.percentage}</Text>
+            <Text className="mt-1 text-sm text-gray-400">{item.label}</Text>
             <Image
-          source={{ uri: "https://via.placeholder.com/40" }} // Replace with real icon
-          className="w-10 h-10 rounded-full mr-3"
-        />
+              source={{ uri: "https://via.placeholder.com/40" }} // Replace with real icon
+              className="mr-3 h-10 w-10 rounded-full"
+            />
           </View>
         ))}
       </View>

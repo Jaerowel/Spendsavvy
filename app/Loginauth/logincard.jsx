@@ -11,24 +11,23 @@ export default function LoginComponent() {
   const [activeTab, setActiveTab] = useState("login"); // State to track the active tab
   const router = useRouter();
 
-
   const handleLogin = async () => {
-    if(!email || !password){
+    if (!email || !password) {
       Alert.alert("Error", "Please Fill in both email and password");
       return;
     }
-    try{
-      const response = await fetch("http://192.168.1.5:3000/login", {
+    try {
+      const response = await fetch("http://localhost:3000/login", {
         method: "POST",
-        headers:{
+        headers: {
           "Content-type": "application/json ",
         },
         body: JSON.stringify({
           username: email,
           password: password,
-        })
+        }),
       });
-      
+
       const data = await response.json();
 
       if (data.success) {
@@ -44,9 +43,7 @@ export default function LoginComponent() {
   };
 
   return (
-    <View className="p-2 rounded-3xl w-full flex-grow ">
-
-
+    <View className="w-full flex-grow rounded-3xl p-2">
       {/* Email Input */}
       <InputField
         label="Email Address"

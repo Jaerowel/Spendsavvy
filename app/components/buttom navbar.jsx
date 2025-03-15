@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 function HomeScreen() {
   return (
     <View className="flex-1 items-center justify-center bg-black">
-      <Text className="text-white text-lg">Home Screen</Text>
+      <Text className="text-lg text-white">Home Screen</Text>
     </View>
   );
 }
@@ -15,7 +15,7 @@ function HomeScreen() {
 function TransactionsScreen() {
   return (
     <View className="flex-1 items-center justify-center bg-black">
-      <Text className="text-white text-lg">Transactions Screen</Text>
+      <Text className="text-lg text-white">Transactions Screen</Text>
     </View>
   );
 }
@@ -23,7 +23,7 @@ function TransactionsScreen() {
 function ProfileScreen() {
   return (
     <View className="flex-1 items-center justify-center bg-black">
-      <Text className="text-white text-lg">Profile Screen</Text>
+      <Text className="text-lg text-white">Profile Screen</Text>
     </View>
   );
 }

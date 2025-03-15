@@ -4,11 +4,11 @@ import { transactions } from "./helper/DummyData"; // Import only transactions
 
 export default function TransactionList() {
   return (
-    <View className="flex-1 p-4"> 
+    <View className="flex-1 p-4">
       {/* Title */}
-      <Text className="text-white text-2xl font-bold">Transactions</Text>
-      <Text className="text-gray-400 text-sm mb-2">
-        Today <Text className="text-gray-500 font-semibold">November 1</Text>
+      <Text className="text-2xl font-bold text-white">Transactions</Text>
+      <Text className="mb-2 text-sm text-gray-400">
+        Today <Text className="font-semibold text-gray-500">November 1</Text>
       </Text>
 
       {/* Scrollable List */}
@@ -17,7 +17,7 @@ export default function TransactionList() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <TransactionItem item={item} />}
         contentContainerStyle={{ paddingBottom: 20 }} // Ensures bottom spacing
-        showsVerticalScrollIndicator={false} 
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

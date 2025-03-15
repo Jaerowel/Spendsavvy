@@ -41,7 +41,10 @@ export default function RegisterComponent() {
         // After registering, navigate to login or dashboard
         router.push("screens/dashboard"); // Or go back to login screen
       } else {
-        Alert.alert("Registration Failed", data.message || "Something went wrong");
+        Alert.alert(
+          "Registration Failed",
+          data.message || "Something went wrong",
+        );
       }
     } catch (error) {
       console.error("Registration Error:", error);
@@ -50,7 +53,7 @@ export default function RegisterComponent() {
   };
 
   return (
-    <View className="p-2 rounded-3xl w-full flex-grow">
+    <View className="w-full flex-grow rounded-3xl p-2">
       {/* Email Input */}
       <InputField
         label="Email Address"

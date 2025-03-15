@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
 
 // Login route - checks against registered users
 app.post("/login", (req, res) => {
+  console.log("requewst")
   const { username, password } = req.body;
 
   console.log("Login attempt:", username, password);
@@ -62,6 +63,6 @@ app.post("/register", (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
