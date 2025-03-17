@@ -1,11 +1,25 @@
 import { Tabs } from "expo-router";
 import { View, TouchableOpacity } from "react-native";
 import { Home, User, Cpu, HandCoins, Wallet } from "lucide-react-native";
+import Headers from "../components/header";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TabLayout() {
   return (
-    <SafeAreaView className="flex-1 bg-[#1d1f24]">
+    <SafeAreaView className="flex-1 bg-[#1d1f24] relative mt-10">
+      {/* Absolute Positioned Header */}
+      <View
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 999, // Make sure it's on top of everything
+        }}
+      >
+        <Headers />
+      </View>
+
       <Tabs
         screenOptions={{
           tabBarStyle: {
@@ -17,7 +31,7 @@ export default function TabLayout() {
             bottom: 0,
             left: 0,
             right: 0,
-            elevation: 5, // Fix elevation issues
+            elevation: 5,
             borderTopWidth: 0,
             alignItems: "center",
             justifyContent: "center",
@@ -28,7 +42,7 @@ export default function TabLayout() {
           headerShown: false,
           tabBarButton: (props) => (
             <TouchableOpacity {...props} activeOpacity={1} />
-          ), // Apply globally
+          ),
         }}
       >
         {/* Dashboard Tab */}
@@ -54,7 +68,7 @@ export default function TabLayout() {
             tabBarButton: (props) => (
               <TouchableOpacity
                 {...props}
-                activeOpacity={1} // Prevent ripple effect
+                activeOpacity={1}
                 style={{
                   top: -30,
                   justifyContent: "center",
@@ -68,8 +82,8 @@ export default function TabLayout() {
                   shadowOffset: { width: 0, height: 4 },
                   shadowOpacity: 0.3,
                   shadowRadius: 2,
-                  elevation: 10, // Ensure it stays above everything
-                  zIndex: 100, // Highest zIndex to prevent touch issues
+                  elevation: 10,
+                  zIndex: 100,
                 }}
               >
                 <View style={{ justifyContent: "center", alignItems: "center" }}>

@@ -6,7 +6,6 @@ import TransactionList from "../components/transaction";
 export default function Dashboard() {
   return (
     <View className="flex-1 bg-[#0E1D12]">
-      <Header />
       <View className="items-center mt-8">
         <BalanceCard />
       </View>

@@ -8,7 +8,7 @@ export default function trackingScreen() {
 
   return (
     <View className="flex-1 bg-[#0E1D12]">
-      <Header />
+   
       <View className="items-center mt-8">
       <PieChart
   data={[

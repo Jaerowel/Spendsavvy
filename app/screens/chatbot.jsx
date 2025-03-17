@@ -41,9 +41,7 @@ export default function ChatbotScreen() {
       className="flex-1 bg-[#0F1D17]"
     >
     {/* Header Container */}
-    <View className="mb-4">
-            <Header title={activeTab} />
-          </View>
+
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View className="flex-1 p-4">
           
