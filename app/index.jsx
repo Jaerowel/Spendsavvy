@@ -13,10 +13,10 @@ export default function Index() {
         await SplashScreen.preventAutoHideAsync(); // Prevent splash screen from hiding immediately
 
         setTimeout(() => {
-          setIsReady(true); // Set the app as ready
-          SplashScreen.hideAsync(); // Hide splash screen
-          router.replace("./Loginauth/Login"); // Redirect to the login page
-        }, 2000); // Show splash screen for 2 seconds
+          setIsReady(true); 
+          SplashScreen.hideAsync(); 
+          router.replace("./Loginauth/Login"); 
+        }, 2000); 
       } catch (e) {
         console.warn(e);
       }
@@ -36,6 +36,6 @@ export default function Index() {
     );
   }
 
-  // After splash screen, you can return a placeholder or routing logic here
+
   return null;
 }

@@ -16,23 +16,27 @@ export default function LoginComponent() {
       Alert.alert("Error", "Please Fill in both email and password");
       return;
     }
+  
     try {
+      console.log("Attempting login with", email, password);
       const response = await fetch("http://192.168.1.5:3000/login", {
         method: "POST",
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: email,
+          email: email,
           password: password,
         }),
       });
-
+  
+      console.log("Raw response:", response);
       const data = await response.json();
-
+      console.log("Parsed response:", data);
+  
       if (data.success) {
         Alert.alert("Success", "Login successful!");
-        router.push("screens/dashboard");
+        router.push("/screens/dashboard");
       } else {
         Alert.alert("Login Failed", data.message || "Invalid credentials");
       }

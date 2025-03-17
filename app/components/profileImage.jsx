@@ -4,7 +4,6 @@ import { View, Image, TouchableOpacity, Text } from "react-native";
 const ProfileImage = ({
   imageUrl,
 
-
   size = 128, // equivalent to h-32 w-32
 
   borderWidth = 4,
@@ -21,13 +20,10 @@ const ProfileImage = ({
           width: size,
           height: size,
           borderRadius: size / 2,
-          
+
           borderWidth: borderWidth,
         }}
       />
-
-     
-      
     </View>
   );
 };
