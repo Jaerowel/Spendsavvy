@@ -9,7 +9,7 @@ export default function Dashboard() {
       <View className="items-center mt-8">
         <BalanceCard />
       </View>
-    <View className=" flex-1 item-center p-4">
+    <View className=" flex-1 item-center ">
       <TransactionList/>
     </View>
     </View>

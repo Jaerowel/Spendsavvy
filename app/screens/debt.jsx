@@ -12,8 +12,8 @@ export default function DebtScreen() {
   };
 
   return (
-    <View className="flex-1 bg-[#0E1D12] p-4">
-      {/* Header */}
+    <View className="flex-1 bg-[#0E1D12] p-4 my-5 ">
+     
       <View className="flex-row justify-between items-center mb-4">
         <Text className="text-2xl font-bold text-white">Debt List</Text>
         <TouchableOpacity

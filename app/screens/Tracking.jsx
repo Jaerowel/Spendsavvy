@@ -9,7 +9,7 @@ export default function trackingScreen() {
   return (
     <View className="flex-1 bg-[#0E1D12]">
    
-      <View className="items-center mt-8">
+      <View className="items-center mt-20">
       <PieChart
   data={[
     { percentage: 41, color: "#7BE495", angle: -45, position: { top: 15, right: 40 } },
@@ -20,7 +20,7 @@ export default function trackingScreen() {
 />
 
       </View>
-      <View className="flex-1 items-center mt-10">
+      <View className="flex-1 items-center mt-5">
        <SpendingCategoriesCard/>
       </View>
     </View>

@@ -13,13 +13,14 @@ export default function LoginComponent() {
 
   const handleLogin = async () => {
     if (!email || !password) {
-      Alert.alert("Error", "Please Fill in both email and password");
+      Alert.alert("Error", "Please fill in both email and password");
       return;
     }
   
     try {
       console.log("Attempting login with", email, password);
-      const response = await fetch("http://192.168.1.5:3000/login", {
+  
+      const response = await fetch("http://192.168.1.5:3000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,6 +32,14 @@ export default function LoginComponent() {
       });
   
       console.log("Raw response:", response);
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.log("Error response:", errorText);
+        Alert.alert("Login Failed", `Server error: ${response.status}`);
+        return;
+      }
+  
       const data = await response.json();
       console.log("Parsed response:", data);
   
@@ -40,11 +49,13 @@ export default function LoginComponent() {
       } else {
         Alert.alert("Login Failed", data.message || "Invalid credentials");
       }
+  
     } catch (error) {
       console.error("Login Error:", error);
       Alert.alert("Error", "Failed to connect to the server");
     }
   };
+  
 
   return (
     <View className="w-full flex-grow rounded-3xl p-2">

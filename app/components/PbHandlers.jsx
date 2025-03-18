@@ -23,21 +23,21 @@ export default function ProfileButtonHandlers() {
       <ProfileButton
         label="Change account details"
         onPress={handleChangeAccount}
-        icon={UserCog}
+        icon={<UserCog color="white" size={20} />}
         borderColor="green"
       />
 
       <ProfileButton
         label="Account Recovery"
         onPress={handleAccountRecovery}
-        icon={ShieldCheck}
+        icon={<ShieldCheck color="white" size={20} />}
         borderColor="green"
       />
 
       <ProfileButton
         label="Other settings"
         onPress={handleOtherSettings}
-        icon={Settings}
+        icon={<Settings color="white" size={20} />}
         borderColor="green"
       />
     </>
