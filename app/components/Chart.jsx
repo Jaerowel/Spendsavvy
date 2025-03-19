@@ -1,37 +1,49 @@
-import React from "react";
-import { View, Text } from "react-native";
-import Svg, { Circle } from "react-native-svg";
+import React, { useEffect, useRef } from "react";
+import { View, Text, Animated, Easing } from "react-native";
+import Svg, { Circle, Text as SvgText, G, Rect } from "react-native-svg";
 
 const PieChart = ({
   data = [],
   size = 200,
-  strokeWidth = 14,
-  gapDegrees = 4, // gap between segments in degrees
+  strokeWidth = 30,
+  gapDegrees = 2,
 }) => {
+  const chartRotation = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(chartRotation, {
+        toValue: 360,
+        duration: 50000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      })
+    ).start();
+  }, []);
+
+  const spin = chartRotation.interpolate({
+    inputRange: [0, 360],
+    outputRange: ["0deg", "360deg"],
+  });
+
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
 
-  // Calculate total of percentages for scaling
   const totalPercentage = data.reduce((sum, seg) => sum + seg.percentage, 0);
-
-  // Pre-calculate each segment's rotation and label position
-  let cumulativeAngle = -90; // start from top (12 o'clock)
+  let cumulativeAngle = -90;
 
   const segments = data.map((seg) => {
     const angle = cumulativeAngle;
     const sweep = (seg.percentage / totalPercentage) * 360;
-
     const middleAngle = angle + sweep / 2;
-    const labelDistance = radius + 30;
 
-    // Calculate label X/Y
+    // Label distance
+    const labelDistance = radius + strokeWidth + 25;
     const radians = (middleAngle * Math.PI) / 180;
-    const labelX = (size / 2) + labelDistance * Math.cos(radians);
-    const labelY = (size / 2) + labelDistance * Math.sin(radians);
+    const labelX = size / 2 + labelDistance * Math.cos(radians);
+    const labelY = size / 2 + labelDistance * Math.sin(radians);
 
-    // Apply gap by reducing sweep angle
     const gapAdjustedSweep = sweep - gapDegrees;
-
     cumulativeAngle += sweep;
 
     return {
@@ -40,68 +52,88 @@ const PieChart = ({
       sweep: gapAdjustedSweep,
       labelX,
       labelY,
+      middleAngle,
     };
   });
 
   return (
     <View className="relative items-center justify-center">
-      <Svg width={size} height={size}>
-        {/* Background Circle */}
-        <Circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          stroke="#2E2E2E"
-          strokeWidth={strokeWidth}
-          fill="none"
-        />
+      {/* Rotating Chart */}
+      <Animated.View style={{ transform: [{ rotate: spin }] }}>
+        <Svg width={size} height={size}>
+          <G>
+            {segments.map((seg, index) => (
+              <Circle
+                key={`segment-${index}`}
+                cx={size / 2}
+                cy={size / 2}
+                r={radius}
+                stroke={seg.color}
+                strokeWidth={strokeWidth}
+                fill="none"
+                strokeDasharray={circumference}
+                strokeDashoffset={
+                  ((100 - (seg.sweep * totalPercentage) / 360) / 100) *
+                  circumference
+                }
+                strokeLinecap="butt"
+                rotation={seg.angle}
+                originX={size / 2}
+                originY={size / 2}
+              />
+            ))}
+          </G>
+        </Svg>
+      </Animated.View>
 
-        {/* Segmented Circles */}
-        {segments.map((seg, index) => (
-          <Circle
-            key={index}
-            cx={size / 2}
-            cy={size / 2}
-            r={radius}
-            stroke={seg.color}
-            strokeWidth={strokeWidth}
-            fill="none"
-            strokeDasharray={circumference}
-            strokeDashoffset={
-              ((100 - (seg.sweep * totalPercentage) / 360) / 100) *
-              circumference
-            }
-            strokeLinecap="round"
-            rotation={seg.angle}
-            originX={size / 2}
-            originY={size / 2}
-          />
-        ))}
+      {/* Static Labels */}
+      <Svg
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
+        width={size}
+        height={size}
+      >
+        <G>
+          {segments.map((seg, index) => (
+            <G key={`label-${index}`}>
+              <Rect
+                x={seg.labelX - 25}
+                y={seg.labelY - 15}
+                width={50}
+                height={30}
+                fill="white"
+                rx={15}
+                ry={15}
+                opacity={0.95}
+              />
+              <SvgText
+                x={seg.labelX}
+                y={seg.labelY + 2}
+                fill={seg.color}
+                fontSize={16}
+                fontWeight="bold"
+                textAnchor="middle"
+                alignmentBaseline="middle"
+              >
+                {`${seg.percentage}%`}
+              </SvgText>
+            </G>
+          ))}
+        </G>
       </Svg>
 
       {/* Center Text */}
-      <View className="absolute items-center">
-        <Text className="text-3xl font-bold text-white">
-          {totalPercentage}%
+      <View className="absolute top-0 bottom-0 left-0 right-0 items-center justify-center">
+        <Text className="text-4xl font-bold text-white text-center">
+          ${totalPercentage}
         </Text>
-        <Text className="text-sm text-gray-400">Transaction</Text>
+        <Text className="text-sm text-gray-400 text-center">
+          Total Spending
+        </Text>
       </View>
-
-      {/* Percentage Labels */}
-      {segments.map((seg, index) => (
-        <View
-          key={`label-${index}`}
-          style={{
-            position: "absolute",
-            left: seg.labelX - 20, // adjust for label size
-            top: seg.labelY - 10,
-          }}
-        >
-          <Text className="rounded-lg bg-gray-700 px-2 py-1 text-white text-xs">
-            {seg.percentage}%
-          </Text>
-        </View>
-      ))}
     </View>
   );
 };

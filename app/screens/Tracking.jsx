@@ -9,18 +9,18 @@ export default function trackingScreen() {
   return (
     <View className="flex-1 bg-[#0E1D12]">
    
-      <View className="items-center mt-20">
-      <PieChart
-  data={[
-    { percentage: 41, color: "#7BE495", angle: -45, position: { top: 15, right: 40 } },
-    { percentage: 45, color: "#6ADF93", angle: 30, position: { bottom: 30, right: 20 } },
-    { percentage: 37, color: "#55D881", angle: 120, position: { bottom: 10, left: 40 } },
-    { percentage: 29, color: "#36C167", angle: 200, position: { top: 30, left: 20 } },
-  ]}
-/>
-
+   <View className="items-center mt-20">
+        <PieChart
+          data={[
+            { percentage: 45, color: "#FF6B6B", label: "Food" },
+            { percentage: 25, color: "#4ECDC4", label: "Transport" },
+            { percentage: 15, color: "#45B7D1", label: "Shopping" },
+            { percentage: 15, color: "#96CEB4", label: "Others" }
+          ]}
+          size={200}
+        />
       </View>
-      <View className="flex-1 items-center mt-5">
+      <View className="flex-1 items-center ">
        <SpendingCategoriesCard/>
       </View>
     </View>
