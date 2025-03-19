@@ -1,5 +1,6 @@
 pluginManagement {
-    includeBuild(new File(["node", "--print", "require.resolve('@react-native/gradle-plugin/package.json', { paths: [require.resolve('react-native/package.json')] })"].execute(null, rootDir).text.trim()).getParentFile().toString())
+    def reactNativeGradlePluginPath = ["node", "--print", "require.resolve('@react-native/gradle-plugin/package.json', { paths: [require.resolve('react-native/package.json')] })"].execute(null, rootDir).text.trim()
+    includeBuild(new File(reactNativeGradlePluginPath).getParentFile().toString())
 }
 plugins { id("com.facebook.react.settings") }
 
@@ -21,18 +22,23 @@ extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
   }
 }
 
-rootProject.name = 'wallet'
+rootProject.name = 'SpendSavvy'
+
+include ':app'
 
 dependencyResolutionManagement {
   versionCatalogs {
     reactAndroidLibs {
-      from(files(new File(["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim(), "../gradle/libs.versions.toml")))
+      def reactNativePackagePath = ["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim()
+      from(files(new File(reactNativePackagePath, "../gradle/libs.versions.toml")))
     }
   }
 }
 
-apply from: new File(["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim(), "../scripts/autolinking.gradle");
+def expoPackagePath = ["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim()
+apply from: new File(expoPackagePath, "../scripts/autolinking.gradle")
 useExpoModules()
 
 include ':app'
-includeBuild(new File(["node", "--print", "require.resolve('@react-native/gradle-plugin/package.json', { paths: [require.resolve('react-native/package.json')] })"].execute(null, rootDir).text.trim()).getParentFile())
+def reactNativeGradlePluginPath = ["node", "--print", "require.resolve('@react-native/gradle-plugin/package.json', { paths: [require.resolve('react-native/package.json')] })"].execute(null, rootDir).text.trim()
+includeBuild(new File(reactNativeGradlePluginPath).getParentFile())
