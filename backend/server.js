@@ -5,7 +5,7 @@ const authRoutes = require("./routes/auth");
 const profileRoutes = require("./routes/profile"); // <-- New profile route
 
 const app = express();
-const port = 3000;
+const port = 1337;
 
 // Connect to MongoDB
 connectDB();
@@ -30,5 +30,6 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(port, "0.0.0.0", () => {
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running on https://b6d2-124-217-116-134.ngrok-free.app:${port}`);
 });
+//https://b6d2-124-217-116-134.ngrok-free.app 
