@@ -34,7 +34,7 @@ export default function RegisterTest() {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <LoginButton title="Register" onPress={onRegister} />
+      <LoginButton label="Register" onPress={onRegister} />
     </View>
   );
 }

@@ -20,14 +20,14 @@ export default function ProfileScreen() {
         console.log("Fetching profile...");
 
         // Get JWT token from storage (assuming you stored it during login)
-        const token = await AsyncStorage.getItem("token"); // Make sure you're saving it on login
+        const token = await AsyncStorage.getItem("token");
         if (!token) {
           Alert.alert("Error", "No token found. Please log in again.");
           setLoading(false);
           return;
         }
 
-        const response = await fetch("http://192.168.1.5:3000/api/profile", {
+        const response = await fetch("http://192.168.1.5:3000/api/auth/user", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

@@ -1,40 +1,47 @@
 import { Alert, Platform } from "react-native";
 
-// Use HTTPS and remove port from base URL
-const API_BASE_URL = "https://0319-124-217-116-134.ngrok-free.app";
+const API_BASE_URL = "http://192.168.1.5:3000";
+
+const logRequestDetails = (url, method, data) => {
+  console.log('[Request Details]', {
+    url,
+    method,
+    data,
+    platform: Platform.OS
+  });
+};
+
+const logResponseDetails = (response) => {
+  console.log('[Response Details]', {
+    status: response.status,
+    ok: response.ok,
+    statusText: response.statusText
+  });
+};
+
+const logErrorDetails = (error) => {
+  console.error('[Network Error]:', {
+    type: error.name,
+    message: error.message,
+    stack: error.stack
+  });
+};
 
 const fetchHandler = async (endpoint, method, data) => {
   try {
-    // Include port in the endpoint
-    const portEndpoint = `:1337${endpoint}`;
-    const fullUrl = `${API_BASE_URL}${portEndpoint}`;
-    
-    console.log('[Request Details]', {
-      url: fullUrl,
-      method,
-      data,
-      platform: Platform.OS
-    });
+    const fullUrl = `${API_BASE_URL}${endpoint}`;
+    logRequestDetails(fullUrl, method, data);
 
     const response = await fetch(fullUrl, {
       method,
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
-        "ngrok-skip-browser-warning": "true",
-        "Connection": "keep-alive",
-        "Access-Control-Allow-Origin": "*"
+        "Accept": "application/json"
       },
-      body: JSON.stringify(data),
-      // Add timeout
-      timeout: 15000,
+      body: JSON.stringify(data)
     });
 
-    console.log('[Response Details]', {
-      status: response.status,
-      ok: response.ok,
-      statusText: response.statusText
-    });
+    logResponseDetails(response);
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -47,13 +54,8 @@ const fetchHandler = async (endpoint, method, data) => {
     return { success: true, data: responseData };
 
   } catch (error) {
-    console.error('[Network Error]:', {
-      type: error.name,
-      message: error.message,
-      stack: error.stack
-    });
+    logErrorDetails(error);
 
-    // Check for specific error types
     if (error.message.includes('Network request failed')) {
       return { 
         success: false, 
@@ -65,14 +67,19 @@ const fetchHandler = async (endpoint, method, data) => {
   }
 };
 
-// Register handler with correct endpoint
-export const handleRegister = async (email, password) => {
+const validateInputs = (email, password) => {
   if (!email || !password) {
     Alert.alert("Error", "Please fill in both email and password");
+    return false;
+  }
+  return true;
+};
+
+export const handleRegister = async (email, password) => {
+  if (!validateInputs(email, password)) {
     return { success: false };
   }
 
-  // Updated endpoint path
   const result = await fetchHandler("/api/auth/register", "POST", { email, password });
   
   if (result.success) {
@@ -84,14 +91,11 @@ export const handleRegister = async (email, password) => {
   return result;
 };
 
-// Login handler with correct endpoint
 export const handleLogin = async (email, password) => {
-  if (!email || !password) {
-    Alert.alert("Error", "Please fill in both email and password");
+  if (!validateInputs(email, password)) {
     return { success: false };
   }
 
-  // Updated endpoint path - removed colon prefix
   const result = await fetchHandler("/api/auth/login", "POST", { email, password });
   
   if (result.success) {

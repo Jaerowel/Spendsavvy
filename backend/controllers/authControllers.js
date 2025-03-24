@@ -1,7 +1,5 @@
 const User = require("../models/Users");
 
-// @desc    Login user
-// @route   POST /api/auth/login
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   console.log("Login attempt:", email);
@@ -31,8 +29,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-// @desc    Register user
-// @route   POST /api/auth/register
+
 const registerUser = async (req, res) => {
   const { email, password } = req.body;
   console.log("Register attempt:", email);
@@ -60,4 +57,24 @@ const registerUser = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, registerUser };
+const getUserInfo = async (req, res) => {
+    try {
+        const userId = req.user.id; // Assuming user ID is stored in req.user.id
+        const user = await User.findById(userId).select('email'); // Fetch user by ID and select only the email field
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.json({ success: true, email: user.email });
+    } catch (err) {
+        console.error("Get User Info Error:", err);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};
+
+module.exports = {
+    loginUser,
+    registerUser,
+    getUserInfo
+};

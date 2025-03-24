@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text } from "react-native";
 
-const LoginButton = ({ onPress, label = "Login" }) => {
+const LoginButton = ({ onPress, label}) => {
   return (
     <TouchableOpacity
       className="mt-5 items-center rounded-2xl bg-[#A3D86C] p-3"

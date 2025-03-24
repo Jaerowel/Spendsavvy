@@ -16,6 +16,8 @@ export default function LoginComponent() {
     const result = await handleLogin(email, password);
     if (result.success) {
       router.push("/screens/dashboard");
+    } else {
+      console.error('Login failed:', result.error);
     }
   };
 
@@ -36,7 +38,7 @@ export default function LoginComponent() {
         secureTextEntry
       />
 
-      <LoginButton onPress={onLogin} />
+      <LoginButton label="Login" onPress={onLogin} />
     </View>
   );
 }

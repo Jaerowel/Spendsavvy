@@ -3,9 +3,12 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
 const profileRoutes = require("./routes/profile"); // <-- New profile route
+const budgetRoutes = require("./routes/budget");
+const transactionRoutes = require("./routes/transaction");
+const goalRoutes = require("./routes/goal");
 
 const app = express();
-const port = 1337;
+const port = 3000;
 
 // Connect to MongoDB
 connectDB();
@@ -21,6 +24,9 @@ app.get("/", (req, res) =>
 
 app.use("/api/auth", authRoutes); // /api/auth/login , /api/auth/register
 app.use("/api/profile", profileRoutes); // /api/profile (protected route)
+app.use("/api/budgets", budgetRoutes);
+app.use("/api/transactions", transactionRoutes);
+app.use("/api/goals", goalRoutes);
 
 // Error handler middleware (optional)
 app.use((err, req, res, next) => {
@@ -30,6 +36,5 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(port, "0.0.0.0", () => {
-  console.log(`Server running on https://b6d2-124-217-116-134.ngrok-free.app:${port}`);
+  console.log(`Server running on localhost:${port}`);
 });
-//https://b6d2-124-217-116-134.ngrok-free.app 
