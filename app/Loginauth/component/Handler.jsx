@@ -1,4 +1,5 @@
 import { Alert, Platform } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_BASE_URL = "http://192.168.1.5:3000";
 
@@ -67,20 +68,26 @@ const fetchHandler = async (endpoint, method, data) => {
   }
 };
 
-const validateInputs = (email, password) => {
-  if (!email || !password) {
-    Alert.alert("Error", "Please fill in both email and password");
+const validateInputs = (email, password, username = null) => {
+  if (!password) {
+    Alert.alert("Error", "Password is required");
     return false;
   }
+
+  if (!email && !username) {
+    Alert.alert("Error", "Either email or username is required");
+    return false;
+  }
+
   return true;
 };
 
-export const handleRegister = async (email, password) => {
-  if (!validateInputs(email, password)) {
+export const handleRegister = async (email, password, username) => {
+  if (!validateInputs(email, password, username)) {
     return { success: false };
   }
 
-  const result = await fetchHandler("/api/auth/register", "POST", { email, password });
+  const result = await fetchHandler("/api/auth/register", "POST", { email, password, username });
   
   if (result.success) {
     Alert.alert("Success", "Registration successful!");
@@ -97,9 +104,17 @@ export const handleLogin = async (email, password) => {
   }
 
   const result = await fetchHandler("/api/auth/login", "POST", { email, password });
-  
+
   if (result.success) {
-    Alert.alert("Success", "Login successful!");
+    // Store the token in AsyncStorage
+    const token = result.data.token; // Assuming the server returns the token in `data.token`
+    if (token) {
+      await AsyncStorage.setItem("token", token);
+      Alert.alert("Success", "Login successful!");
+    } else {
+      Alert.alert("Login Failed", "No token received from the server");
+      return { success: false };
+    }
   } else {
     Alert.alert("Login Failed", result.error || "Invalid credentials");
   }

@@ -10,7 +10,7 @@ const categories = [
 
 const SpendingCategoriesCard = () => {
   return (
-    <View className="mt-10 w-full flex-grow rounded-3xl bg-[#2D2D2D] p-6">
+    <View className="mt-10 w-full flex-grow rounded-3xl bg-background p-6">
       <Text className="mb-4 text-lg font-bold text-white">
         Spending categories
       </Text>

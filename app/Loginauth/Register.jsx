@@ -2,14 +2,15 @@ import { View } from "react-native";
 import { useState } from "react";
 import InputField from "./component/Inputfield";
 import LoginButton from "./component/loginbuttons";
-import {handleRegister} from "./component/Handler";
+import { handleRegister } from "./component/Handler";
 
 export default function RegisterTest() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const onRegister = async () => {
-    const result = await handleRegister(email, password);
+    const result = await handleRegister(email, password, username);
     if (result.success) {
       // Handle successful registration
       console.log("Registration successful");
@@ -26,6 +27,12 @@ export default function RegisterTest() {
         placeholder="Enter your email"
         value={email}
         onChangeText={setEmail}
+      />
+      <InputField
+        label="Username"
+        placeholder="Enter your username"
+        value={username}
+        onChangeText={setUsername}
       />
       <InputField
         label="Password"

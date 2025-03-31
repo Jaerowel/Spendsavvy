@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { View, Image } from "react-native";
 import { useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Index() {
   const [isReady, setIsReady] = useState(false);
@@ -12,10 +13,20 @@ export default function Index() {
       try {
         await SplashScreen.preventAutoHideAsync(); // Prevent splash screen from hiding immediately
 
+        // Check if the user has a token
+        const token = await AsyncStorage.getItem("token");
+
         setTimeout(() => {
           setIsReady(true); 
           SplashScreen.hideAsync(); 
-          router.replace("./Loginauth/Login"); 
+
+          if (token) {
+            // If token exists, redirect to dashboard
+            router.replace("./screens/dashboard");
+          } else {
+            // If no token, redirect to login
+            router.replace("./Loginauth/Login");
+          }
         }, 2000); 
       } catch (e) {
         console.warn(e);
@@ -35,7 +46,6 @@ export default function Index() {
       </View>
     );
   }
-
 
   return null;
 }
