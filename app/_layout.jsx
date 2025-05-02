@@ -1,14 +1,31 @@
 import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar"; // Import StatusBar
+import { StatusBar } from "expo-status-bar";
 import "../global.css";
 
 export default function RootLayout() {
   return (
     <>
       {/* Global StatusBar */}
-
-      <StatusBar className="bg-[#1d1f24]" />
-      <Stack screenOptions={{ headerShown: false }} />
+      <StatusBar style="light" />
+      
+      {/* Main navigation Stack */}
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: "#0E1D12" },
+          animation: "slide_from_right",
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="Loginauth" />
+        <Stack.Screen
+          name="(tabs)"
+          options={{ 
+            headerShown: false,
+            animation: "fade",
+          }}
+        />
+      </Stack>
     </>
   );
 }

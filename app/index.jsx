@@ -21,11 +21,11 @@ export default function Index() {
           SplashScreen.hideAsync(); 
 
           if (token) {
-            // If token exists, redirect to dashboard
-            router.replace("./screens/dashboard");
+            // If token exists, redirect to tabs navigation
+            router.replace("/(tabs)");
           } else {
             // If no token, redirect to login
-            router.replace("./Loginauth/Login");
+            router.replace("/Loginauth/Login");
           }
         }, 2000); 
       } catch (e) {
