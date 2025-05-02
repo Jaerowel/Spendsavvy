@@ -7,9 +7,9 @@ import Header from "../components/header";
 export default function TabLayout() {
   const { width } = useWindowDimensions();
   
-  // Responsive styling based on screen width
+ 
   const getTabBarStyle = () => {
-    // Base styles for all screen sizes
+  
     const baseStyle = {
       backgroundColor: "#1d1f24",
       borderTopLeftRadius: 14,
