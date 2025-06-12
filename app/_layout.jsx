@@ -20,7 +20,7 @@ export default function RootLayout() {
         <Stack.Screen name="Loginauth" />
         <Stack.Screen
           name="(tabs)"
-          options={{ 
+          options={{  
             headerShown: false,
             animation: "fade",
           }}
