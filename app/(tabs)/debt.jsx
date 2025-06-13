@@ -126,7 +126,7 @@ export default function DebtScreen() {
   }
   
   return (
-    <View className="flex-1 h-screen bg-[#0E1D12] p-4 mb-20">
+    <View className="flex-1 h-screen bg-[#0E1D12] p-4 ">
       {/* Header Component */}
       <DebtHeader onAddPress={prepareAddForm} />
 

@@ -12,8 +12,6 @@ export default function TabLayout() {
   
     const baseStyle = {
       backgroundColor: "#1d1f24",
-      borderTopLeftRadius: 14,
-      borderTopRightRadius: 14,
       position: "absolute",
       bottom: 0,
       left: 0,
