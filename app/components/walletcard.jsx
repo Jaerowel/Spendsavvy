@@ -6,7 +6,7 @@ export default function BalanceCard() {
   return (
     <View className="relative flex items-center justify-center px-4">
       {/* Glow Effect (Using Box Shadow) */}
-      <View className="absolute h-[180px] w-[324px] rounded-[11px] shadow-[0px_0px_20px_5px_rgba(75,200,113,1.00)]" />
+      <View className="absolute h-[180px] w-[24px] rounded-[11px] " />
 
       {/* Card with gradient background */}
       <LinearGradient
@@ -42,7 +42,7 @@ export default function BalanceCard() {
           <Text className="text-lg font-semibold text-white">
             Speculated Balance
           </Text>
-          <Text className="text-7xl font-bold tracking-wide text-white">
+          <Text className="text-6xl sm:text-base md:text-7xl lg:text-8xl  font-bold tracking-wide text-white">
             $7,172.85
           </Text>
         </View>

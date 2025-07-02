@@ -13,12 +13,13 @@ export default function LoginComponent() {
   const router = useRouter();
 
   const onLogin = async () => {
-    const result = await handleLogin(email, password);
-    if (result.success) {
-      router.push("/screens/dashboard");
-    } else {
-      console.error('Login failed:', result.error);
-    }
+//  (   const result = await handleLogin(email, password);
+//     if (result.success) {
+//       router.push("/screens/dashboard");
+//     } else {
+//       console.error('Login failed:', result.error);
+//     })
+router.push("/(tabs)/dashboard");
   };
 
   return (
